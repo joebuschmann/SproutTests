@@ -19,6 +19,7 @@ namespace SproutTests
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("SproutApp")]
+    [NUnit.Framework.CategoryAttribute("chromedriver")]
     public partial class SproutAppFeature
     {
         
@@ -32,7 +33,8 @@ namespace SproutTests
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "SproutApp", "\tIn order to validate the Sprout web app\r\n\tAs a user of Sprout\r\n\tI want to manage" +
-                    " my Twitter inbox", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    " my Twitter inbox", ProgrammingLanguage.CSharp, new string[] {
+                        "chromedriver"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,8 +68,8 @@ namespace SproutTests
         
         public virtual void FeatureBackground()
         {
-#line 6
 #line 7
+#line 8
  testRunner.Given("I have logged into my Sprout account", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
@@ -77,18 +79,18 @@ namespace SproutTests
         public virtual void ComposeATwitterMessage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Compose a Twitter message", ((string[])(null)));
-#line 9
-this.ScenarioSetup(scenarioInfo);
-#line 6
-this.FeatureBackground();
 #line 10
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
+#line 11
  testRunner.Given("I compose a Twitter message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
+#line 12
  testRunner.When("I enter the following text", "Hello Sprout!", ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
- testRunner.And("I send it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
+ testRunner.And("I send it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
  testRunner.Then("the message will be sent successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -99,18 +101,18 @@ this.FeatureBackground();
         public virtual void ViewIncomingTweets()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View incoming Tweets", ((string[])(null)));
-#line 18
-this.ScenarioSetup(scenarioInfo);
-#line 6
-this.FeatureBackground();
 #line 19
- testRunner.When("I navigate to the Messages tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
 #line 20
+ testRunner.When("I navigate to the Messages tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 21
  testRunner.Then("I should have messages in my smart inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 21
+#line 22
  testRunner.When("I reply to the first tweet with the following text", "This is a test reply.", ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 25
+#line 26
  testRunner.Then("the message will be sent successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -121,21 +123,21 @@ this.FeatureBackground();
         public virtual void ScheduleATweet()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Schedule a Tweet", ((string[])(null)));
-#line 27
-this.ScenarioSetup(scenarioInfo);
-#line 6
-this.FeatureBackground();
 #line 28
- testRunner.Given("I navigate to the Publishing tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
+#line 7
+this.FeatureBackground();
 #line 29
+ testRunner.Given("I navigate to the Publishing tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 30
  testRunner.And("choose the Calendar option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 30
+#line 31
  testRunner.When("I compose the message", "Future dated tweet", ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 34
+#line 35
  testRunner.And("schedule the post for one hour from now", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 35
+#line 36
  testRunner.Then("the following message should appear on the calendar", "Future dated tweet", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

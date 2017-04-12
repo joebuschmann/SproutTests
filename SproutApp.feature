@@ -1,4 +1,5 @@
-﻿Feature: SproutApp
+﻿@chromedriver
+Feature: SproutApp
 	In order to validate the Sprout web app
 	As a user of Sprout
 	I want to manage my Twitter inbox

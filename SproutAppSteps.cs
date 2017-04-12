@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
-using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using TechTalk.SpecFlow;
@@ -21,9 +18,9 @@ namespace SproutTests
         private readonly IWait<IWebDriver> _longWait;
         private DateTime _scheduledDate = DateTime.MinValue;
 
-        public SproutAppSteps()
+        public SproutAppSteps(IWebDriver webDriver)
         {
-            _webDriver = new ChromeDriver();
+            _webDriver = webDriver;
 
             _shortWait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(5))
             {
