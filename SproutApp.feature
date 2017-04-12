@@ -33,6 +33,7 @@ Scenario: Schedule a Tweet
 	Future dated tweet
 	"""
 	And schedule the post for one hour from now
+	And send it
 	Then the following message should appear on the calendar
 	"""
 	Future dated tweet

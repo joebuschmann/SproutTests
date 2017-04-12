@@ -136,8 +136,10 @@ this.FeatureBackground();
  testRunner.When("I compose the message", "Future dated tweet", ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 35
  testRunner.And("schedule the post for one hour from now", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 36
+ testRunner.And("send it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 37
  testRunner.Then("the following message should appear on the calendar", "Future dated tweet", ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

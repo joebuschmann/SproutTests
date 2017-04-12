@@ -14,6 +14,7 @@ namespace SproutTests
         private readonly ScenarioContext _scenarioContext;
         private readonly FeatureContext _featureContext;
         private readonly IObjectContainer _container;
+        private IWebDriver _webDriver;
 
         public LoadDriver(ScenarioContext scenarioContext, FeatureContext featureContext, IObjectContainer container)
         {
@@ -44,14 +45,14 @@ namespace SproutTests
             }
 
             var driverTag = driverTags[0];
-            IWebDriver webDriver = GetWebDriver(driverTag);
+            _webDriver = GetWebDriver(driverTag);
 
-            if (webDriver == null)
+            if (_webDriver == null)
             {
                 throw new Exception("Unable to initialize the driver specified by the tag " + driverTag + ".");
             }
 
-            _container.RegisterInstanceAs(webDriver, typeof (IWebDriver));
+            _container.RegisterInstanceAs(_webDriver, typeof (IWebDriver));
         }
 
         private IWebDriver GetWebDriver(string tag)
@@ -62,6 +63,15 @@ namespace SproutTests
             }
 
             return null;
+        }
+
+        [AfterScenario]
+        public void Dispose()
+        {
+            if (_webDriver != null)
+            {
+                _webDriver.Quit();
+            }
         }
     }
 }
