@@ -1,7 +1,7 @@
 
 # Sprout Tests
 
-This .NET solution validates the behavior of the Sprout Social web app at https://app.sproutsocial.com/login using Specflow and Selenium. To run the tests, update the credentials in App.config, build the solution, and run with your favorite NUnit test runner.
+This .NET solution validates the behavior of the Sprout Social web app at https://app.sproutsocial.com/login using Specflow and Selenium. To run the tests, update the credentials in App.config, build the solution, and run with your favorite NUnit test runner. Alternatively, you can run runtests.bat which will open the NUnit GUI and execute the tests.
 
 The Gherkin scenarios are in the SproutApp.feature file and describe three scenarios for sending tweets.
 

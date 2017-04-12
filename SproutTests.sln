@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DF18AFDC-1174-4ADA-B5AD-F304C465F6A4}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		runtests.bat = runtests.bat
 	EndProjectSection
 EndProject
 Global
