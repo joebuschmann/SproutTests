@@ -133,36 +133,45 @@ namespace SproutTests
         [Then(@"the following message should appear on the calendar")]
         public void PostAppearsOnCalendar(string expectedTweet)
         {
+            // Get the calendar item with the scheduled tweet
             string dayOfWeekMarker = "_" + _scheduledDate.DayOfWeek.ToString().ToLower();
+            string expectedTime = _scheduledDate.ToString("h:mm tt").ToLower();
 
-            // Get the cell with the scheduled tweet
-            // TODO: Simplify by figuring out how to convert from the value in data-bucket-date attribute.
+            // There is a data marker attribute "data-hour". Take advantage of it to select the correct list of calendar items.
+            string hour = _scheduledDate.Hour < 10 ? "0" + _scheduledDate.Hour : _scheduledDate.Hour.ToString();
 
-            ReadOnlyCollection<IWebElement> calendarItems = _longWait.Until(d =>
+            IWebElement actualCalendarItem = _longWait.Until(d =>
             {
-                ReadOnlyCollection<IWebElement> elements =
+                ReadOnlyCollection<IWebElement> calendarItems =
                     d.FindElements(
                         By.CssSelector(string.Format(
                             "section#publishing_calendar td.WeeklyCalendar-data-day-cell.{0} div.WeeklyCalendar-timebucket div[data-hour=\"{1}\"]",
-                            dayOfWeekMarker, _scheduledDate.Hour)));
+                            dayOfWeekMarker, hour)));
 
-                return elements.Count == 0 ? null : elements;
+                if (calendarItems.Count == 0)
+                {
+                    // Item hasn't loaded yet. Return and try again.
+                    return null;
+                }
+
+                // We have calendar items. Try to find the right one.
+                foreach (var calendarItem in calendarItems)
+                {
+                    string time = calendarItem.FindElement(By.CssSelector("div.WeeklyCalendar-data-day-byline")).Text;
+
+                    if (time == expectedTime)
+                    {
+                        return calendarItem;
+                    }
+                }
+
+                return null;
             });
 
-            string expectedTime = _scheduledDate.ToString("h:mm tt").ToLower();
-            string actualTime = null;
-            string actualTweet = null;
+            Assert.IsNotNull(actualCalendarItem);
 
-            foreach (var calendarItem in calendarItems)
-            {
-                string time = calendarItem.FindElement(By.CssSelector("div.WeeklyCalendar-data-day-byline")).Text;
-
-                if (time == expectedTime)
-                {
-                    actualTime = time;
-                    actualTweet = calendarItem.FindElement(By.CssSelector("div.calendar-data-message-text")).Text;
-                }
-            }
+            string actualTime = actualCalendarItem.FindElement(By.CssSelector("div.WeeklyCalendar-data-day-byline")).Text;
+            string actualTweet = actualCalendarItem.FindElement(By.CssSelector("div.calendar-data-message-text")).Text;
 
             Assert.AreEqual(_scheduledDate.ToString("h:mm tt").ToLower(), actualTime);
             Assert.AreEqual(expectedTweet, actualTweet);
